@@ -25,7 +25,6 @@ lab15/
 │       ├── components/Login.jsx
 │       ├── components/ProtectedRoute.jsx
 │       └── pages/{Publico,Privado}.jsx
-├── Capturas/README.md       checklist de capturas para el informe
 └── README.md                este archivo
 ```
 
@@ -103,41 +102,3 @@ git remote add origin https://github.com/TU_USUARIO/lab15-jwt.git
 git push -u origin main
 ```
 
----
-
-## 6. Capturas que va en el Word/PDF
-
-Ver `Capturas/README.md`. Resumen: código en VS Code, respuestas de Postman
-(incluida la 401 sin token), pantallas del login/logout en React con el
-localStorage, y la captura del repositorio en GitHub.
-
-### Descripción de lo avanzado (texto sugerido)
-
-> Se implementó una API REST con Django REST Framework y SimpleJWT. Se crearon
-> dos recursos: uno público y otro protegido con `IsAuthenticated`, de modo que
-> el acceso privado solo es posible enviando un access token JWT válido en el
-> encabezado `Authorization: Bearer`. Se configuró CORS para permitir el consumo
-> desde React. En el cliente se implementó un formulario de inicio de sesión que
-> guarda los tokens en `localStorage`, un cierre de sesión que los elimina y una
-> ruta protegida que redirige al login cuando no existe token. La funcionalidad
-> se verificó con Postman y con pruebas automáticas (`python manage.py test`).
-
-### Observaciones (texto sugerido)
-
-> La guía utiliza `MIDDLEWARE_CLASSES` y `CORS_ORIGIN_ALLOW_ALL`, nombres que ya
-> no se usan en las versiones actuales de Django y django-cors-headers; se
-> reemplazaron por `MIDDLEWARE` y `CORS_ALLOW_ALL_ORIGINS`. Además fue necesario
-> ejecutar `migrate` y crear un usuario, pasos que la guía no indica pero sin los
-> cuales el endpoint de token no puede autenticar. `CORS_ALLOW_ALL_ORIGINS=True`
-> se usa solo en el laboratorio; en producción debe restringirse a dominios
-> concretos y el token debe manejarse con cookies `HttpOnly`.
-
-### Conclusiones (texto sugerido)
-
-> JWT permite mantener la autenticación sin sesiones del lado del servidor, ya
-> que cada petición lleva el token firmado. La combinación de `IsAuthenticated`
-> en el backend y una ruta protegida en React evita el acceso a recursos privados
-> incluso si el usuario intenta navegar directamente a la URL. El flujo de
-> refresh token permite renovar el acceso sin volver a pedir la clave. Como
-> mejora futura se podría almacenar el token en una cookie `HttpOnly` para
-> mitigar riesgos de XSS.
