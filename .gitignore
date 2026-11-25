@@ -1,0 +1,15 @@
+# Python
+venv/
+__pycache__/
+*.py[cod]
+db.sqlite3
+
+# Node
+node_modules/
+dist/
+.env
+
+# Editores / SO
+.vscode/
+.DS_Store
+Thumbs.db
